@@ -1,0 +1,160 @@
+<div class="container my-4 bg-warning" style="max-width: 600px;">
+    <form [formGroup]="profileForm" class="row">
+
+        <!-- Bloque 1: Datos personales -->
+        <div class="mb-3">
+            <label for="nombre" class="form-label">nombre</label>
+            <input type="text" class="form-control" id="nombre" formControlName="nombre"
+                [class.is-invalid]="isInvalidField('nombre')" />
+            @if (isInvalidField('nombre')) {
+            <div class="invalid-feedback">
+                @if (hasError('nombre', 'required')) {
+                El nombre es obligatorio
+                } @else if (hasError('nombre', 'minlength')) {
+                Mínimo 2 caracteres
+                } @else if (hasError('nombre', 'maxlength')) {
+                Máximo 30 caracteres
+                } @else if (hasError('nombre', 'pattern')) {
+                Solo se permiten letras
+                }
+            </div>
+            }
+        </div>
+
+        <div class="mb-3">
+            <label for="apellidos" class="form-label">Apellidos</label>
+            <input type="text" class="form-control" id="apellidos" formControlName="apellidos"
+                [class.is-invalid]="isInvalidField('apellidos')" />
+            @if (isInvalidField('apellidos')) {
+            <div class="invalid-feedback">
+                @if (hasError('apellidos', 'required')) {
+                Los apellidos son obligatorios
+                } @else if (hasError('apellidos', 'minlength')) {
+                Mínimo 2 caracteres
+                } @else if (hasError('apellidos', 'maxlength')) {
+                Máximo 50 caracteres
+                } @else if (hasError('apellidos', 'pattern')) {
+                Solo se permiten letras
+                }
+            </div>
+            }
+        </div>
+
+        <div class="mb-3">
+            <label for="dni" class="form-label">DNI</label>
+            <input type="text" class="form-control" id="dni" formControlName="dni"
+                [class.is-invalid]="isInvalidField('dni')" />
+            @if (isInvalidField('dni')) {
+            <div class="invalid-feedback">
+                @if (hasError('dni', 'required') || hasError('dni', 'pattern')) {
+                Formato no válido
+                }
+            </div>
+            }
+        </div>
+
+        <div class="mb-3">
+            <label for="tel" class="form-label">Teléfono</label>
+            <input type="number" class="form-control" id="tel" formControlName="tel"
+                [class.is-invalid]="isInvalidField('tel')" />
+            @if (isInvalidField('tel')) {
+            <div class="invalid-feedback">
+                Introduce un móvil español válido
+            </div>
+            }
+        </div>
+
+        <!-- Bloque 2: Datos de la cuenta -->
+        <div class="mb-3">
+            <label for="nombreUsuario" class="form-label">Username</label>
+            <input type="text" class="form-control" id="nombreUsuario" formControlName="nombreUsuario"
+                [class.is-invalid]="isInvalidField('nombreUsuario')" />
+            @if (isInvalidField('nombreUsuario')) {
+            <div class="invalid-feedback">
+                @if (hasError('nombreUsuario', 'required') || hasError('nombreUsuario', 'minlength') ||
+                hasError('nombreUsuario', 'maxlength')) {
+                Entre 4 y 15 caracteres
+                } @else if (hasError('nombreUsuario', 'pattern')) {
+                Debe empezar por letra y no contener espacios ni símbolos
+                }
+            </div>
+            }
+        </div>
+
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="text" class="form-control" id="email" formControlName="email"
+                [class.is-invalid]="isInvalidField('email')" />
+            @if (isInvalidField('email')) {
+            <div class="invalid-feedback">
+                @if (hasError('email', 'required')) {
+                El email es obligatorio
+                } @else if (hasError('email', 'email')) {
+                Formato de email no válido
+                }
+            </div>
+            }
+        </div>
+
+        <div class="mb-3">
+            <label for="contrasena" class="form-label">Contraseña</label>
+            <input type="text" class="form-control" id="contrasena" formControlName="contrasena"
+                [class.is-invalid]="isInvalidField('contrasena')" />
+            @if (isInvalidField('contrasena')) {
+            <div class="invalid-feedback">
+                @if (hasError('contrasena', 'required')) {
+                La contraseña es obligatoria
+                } @else if (hasError('contrasena', 'minlength')) {
+                Mínimo 8 caracteres
+                } @else if (hasError('contrasena', 'maxlength')) {
+                Máximo 20 caracteres
+                } @else if (hasError('contrasena', 'pattern')) {
+                Debe incluir mayúscula, minúscula, número y carácter especial
+                }
+            </div>
+            }
+        </div>
+
+        <!--  Bloque 3: Preferencias de uso -->
+        <div class="mb-3">
+            <label for="cursoInteres" class="form-label">Curso Interés</label>
+            <select class="form-select" id="cursoInteres" formControlName="cursoInteres"
+                [class.is-invalid]="isInvalidField('cursoInteres')">
+                <option value="" disabled>-- Selecciona un curso --</option>
+                <option value="Tecnología">Tecnología</option>
+                <option value="Diseño">Diseño</option>
+                <option value="Programación">Programación</option>
+            </select>
+            @if (isInvalidField('cursoInteres')) {
+            <div class="invalid-feedback">
+                Selecciona un curso
+            </div>
+            }
+        </div>
+
+        <div class="mb-3">
+            <label for="horasSemanalesDisponibles" class="form-label">Horas Semanales Disponibles</label>
+            <input type="number" class="form-control" id="horasSemanalesDisponibles"
+                formControlName="horasSemanalesDisponibles"
+                [class.is-invalid]="isInvalidField('horasSemanalesDisponibles')" />
+            @if (isInvalidField('horasSemanalesDisponibles')) {
+            <div class="invalid-feedback">
+                Entre 2 y 40 horas
+            </div>
+            }
+        </div>
+
+        <div class="mb-3">
+            <label for="codigoPostal" class="form-label">Código Postal</label>
+            <input type="text" class="form-control" id="codigoPostal" formControlName="codigoPostal"
+                [class.is-invalid]="isInvalidField('codigoPostal')" />
+            @if (isInvalidField('codigoPostal')) {
+            <div class="invalid-feedback">
+                Código postal no válido
+            </div>
+            }
+        </div>
+
+        <button type="button" class="btn btn-primary">Enviar</button>
+    </form>
+</div>
